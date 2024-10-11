@@ -11,7 +11,6 @@ import AVFoundation
 class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBOutlet weak var ValueTextOutlet: UILabel!
-    @IBOutlet weak var UnitsTextOutlet: UILabel!
     @IBOutlet weak var SoundsTextOutlet: UILabel!
     @IBOutlet weak var ProgressBarOutlet: ProgressBar!
     
@@ -27,6 +26,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     
     //MARK: - Audio Session
     
@@ -72,6 +72,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
+    
+    //MARK: - Audio Recording
+    
     func startRecording() {
         let settings: [String: Any] = [
             AVFormatIDKey: kAudioFormatAppleLossless,
@@ -95,7 +98,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(updateMeters), userInfo: nil, repeats: true)
     }
     
-    //MARK: - dB Measure
+    
+    //MARK: - dB Measuring
     
     @objc func updateMeters() {
         audioRecorder.updateMeters()
@@ -131,6 +135,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         default:
             print("Sounds Text Error")
         }
+        
         let normalizedValue = dbA / 105.0
         ProgressBarOutlet.setProgress(progress: CGFloat(normalizedValue), animated: true)
         
@@ -141,6 +146,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         timer?.invalidate()
     }
     
+    
     //MARK: - Progress Bar
     
     func progressBarSettings() {
@@ -149,6 +155,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         
     }
 }
+
 
     //MARK: - Sounds Text
 
@@ -164,6 +171,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
         return attributedString
     }
+
 
 //MARK: - Extensions
 
