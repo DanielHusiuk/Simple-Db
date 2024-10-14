@@ -1,7 +1,9 @@
-My first swift app
+# Simple Db
+
+*My first swift app*
 
 Implemented with UIKit:
-- decibel measuring using phone microphone
+- decibel measuring using microphone
 - custom ui progress bar
-- progress bar logic with different levels of db
+- progress bar color logic with different db levels
 - ui alerts
